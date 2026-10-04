@@ -7,7 +7,6 @@ class A3A_Text;
 class A3A_Edit;
 class A3A_Button;
 class A3A_Background;
-class A3A_Tree;
 class A3A_ControlsGroupNoScrollbars;
 class A3A_ControlsGroup;
 class A3A_DefaultControlsGroup;

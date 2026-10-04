@@ -1,6 +1,6 @@
 #include "..\script_component.hpp"
 /* ----------------------------------------------------------------------------
-Function: a3ue_extsaves_exportdata_pythia_fnc_onEventServerGameSaved
+Function: a3ue_extsaves_exportdata_pythia_fnc_onServerGameSaved
 
 Description:
     CBA_EVENT_SERVER_GAME_SAVED event handler.
@@ -24,7 +24,7 @@ Environment:
 Author:
     jwoodruff40/Creep'nCrunch
 ---------------------------------------------------------------------------- */
-TRACE_1(QFUNC(onEventServerGameSaved),_this);
+TRACE_1(QFUNC(onServerGameSaved),_this);
 
 if !assert(params[
     ["_useMPNamespace", nil, [false]],
