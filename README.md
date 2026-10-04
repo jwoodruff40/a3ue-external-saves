@@ -1,4 +1,4 @@
-A3UEBET
+A3UE_EXTSAVES
 -------
 
 **Antistasi Ultimate Blank Extender Template**
@@ -46,12 +46,12 @@ to the rebel buy menu's "OTHER" section.
 
 1. Install the above [requirements](#requirements).
 2. Clone this repository to a location of your chosing
-3. Copy the `@a3uebet` folder somewhere
+3. Copy the `@a3ue_extsaves` folder somewhere
 4. Think of a so-called _prefix_ for your extender; shouldn't be too long
 5. Rename the copy to what your extender should be called
 6. A LOT of search/replace (faster in VSCode with search/replace in files).
 
-   Look for the current prefix (which is a3uebet) and rename to _your_ prefix (_a3uemymod_ in this example):
+   Look for the current prefix (which is a3ue_extsaves) and rename to _your_ prefix (_a3uemymod_ in this example):
    ![VSCode search-replace example](images/vscode-search-replace.png)
 7. Open a command line (or terminal in VSCode) and run your first `hemtt check` (<-- this is your new best friend).
 8. You're ready to go

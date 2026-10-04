@@ -1,2 +1,0 @@
-PREP(onClientInitDone);
-PREP(onServerInitDone);
