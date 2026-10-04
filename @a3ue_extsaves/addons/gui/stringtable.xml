@@ -1,4 +1,80 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Project name="A3UE_EXTSAVES">
-    <Package name="GUI"></Package>
+    <Package name="GUI">
+        <Key ID="STR_A3UE_EXTSAVES_GUI_setup_ie_clear">
+            <Original>Clear</Original>
+        </Key>
+        <Key ID="STR_A3UE_EXTSAVES_GUI_setup_ie_close">
+            <Original>Close</Original>
+        </Key>
+        <Key ID="STR_A3UE_EXTSAVES_GUI_setup_ie_copied">
+            <Original>Save data has been copied to your clipboard.</Original>
+        </Key>
+        <Key ID="STR_A3UE_EXTSAVES_GUI_setup_ie_edit">
+            <Original>Edit</Original>
+        </Key>
+        <Key ID="STR_A3UE_EXTSAVES_GUI_setup_ie_export">
+            <Original>Text Export</Original>
+        </Key>
+        <Key ID="STR_A3UE_EXTSAVES_GUI_setup_ie_export_tooltip">
+            <Original>Copy the text in the save data box to your clipboard.</Original>
+        </Key>
+        <Key ID="STR_A3UE_EXTSAVES_GUI_setup_ie_filesystem_text">
+            <Original>Filesystem</Original>
+        </Key>
+        <Key ID="STR_A3UE_EXTSAVES_GUI_setup_ie_import">
+            <Original>Text Import</Original>
+        </Key>
+        <Key ID="STR_A3UE_EXTSAVES_GUI_setup_ie_import_empty">
+            <Original>Paste JSON-formatted save data into the save data box to import it.</Original>
+        </Key>
+        <Key ID="STR_A3UE_EXTSAVES_GUI_setup_ie_import_invalid">
+            <Original>The save data is not valid JSON. Check the data and try again.</Original>
+        </Key>
+        <Key ID="STR_A3UE_EXTSAVES_GUI_setup_ie_import_success">
+            <Original>Save data imported as a new campaign save.</Original>
+        </Key>
+        <Key ID="STR_A3UE_EXTSAVES_GUI_setup_ie_import_tooltip">
+            <Original>Import the text in the save data box as a new campaign save.</Original>
+        </Key>
+        <Key ID="STR_A3UE_EXTSAVES_GUI_setup_ie_inidbi2_export">
+            <Original>iniDBI2 Export</Original>
+        </Key>
+        <Key ID="STR_A3UE_EXTSAVES_GUI_setup_ie_inidbi2_export_tooltip">
+            <Original>Export save data to an iniDBI2 database using the iniDBI2 extension.</Original>
+        </Key>
+        <Key ID="STR_A3UE_EXTSAVES_GUI_setup_ie_inidbi2_import">
+            <Original>iniDBI2 Import</Original>
+        </Key>
+        <Key ID="STR_A3UE_EXTSAVES_GUI_setup_ie_inidbi2_import_tooltip">
+            <Original>Import save data from an iniDBI2 database using the iniDBI2 extension.</Original>
+        </Key>
+        <Key ID="STR_A3UE_EXTSAVES_GUI_setup_ie_pythia_export">
+            <Original>Pythia Export</Original>
+        </Key>
+        <Key ID="STR_A3UE_EXTSAVES_GUI_setup_ie_pythia_export_tooltip">
+            <Original>Export save data to a JSON file on disk using the Pythia extension.</Original>
+        </Key>
+        <Key ID="STR_A3UE_EXTSAVES_GUI_setup_ie_pythia_import">
+            <Original>Pythia Import</Original>
+        </Key>
+        <Key ID="STR_A3UE_EXTSAVES_GUI_setup_ie_pythia_import_tooltip">
+            <Original>Import save data from a JSON file on disk using the Pythia extension.</Original>
+        </Key>
+        <Key ID="STR_A3UE_EXTSAVES_GUI_setup_ie_savedata">
+            <Original>Save Data</Original>
+        </Key>
+        <Key ID="STR_A3UE_EXTSAVES_GUI_setup_import_export">
+            <Original>Import / Export Game</Original>
+            <Czech>Importovat / exportovat hru</Czech>
+            <French>Importer / exporter la partie</French>
+            <Italian>Importa / esporta partita</Italian>
+            <Polish>Importuj / eksportuj grę</Polish>
+            <Portuguese>Importar / exportar jogo</Portuguese>
+            <Russian>Импорт / экспорт игры</Russian>
+            <Korean>게임 가져오기 / 내보내기</Korean>
+            <Chinesesimp>导入/导出游戏</Chinesesimp>
+            <Turkish>Oyunu içe aktar / dışa aktar</Turkish>
+        </Key>
+    </Package>
 </Project>
