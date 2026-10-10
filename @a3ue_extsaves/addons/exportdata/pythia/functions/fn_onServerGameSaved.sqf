@@ -33,6 +33,7 @@ if !assert(params[
     ["_worldName", nil, [""]]
 ]) exitWith {};
 
+/*
 private _namespace = [profileNamespace, missionProfileNamespace] select (_useMPNamespace);
 private _saveDataKey = format ([["savedata%1%2%3%4", _serverID, _campaignID, "Antistasi", _worldName], ["savedata%1", _campaignID]] select (_useMPNamespace));
 private _saveData = _namespace getVariable _saveDataKey;
@@ -48,5 +49,6 @@ if (_exportSuccess) then {
 } else {
     Error_2("Server failed to export save data for %1.%2. Check logs for more information.",_saveDataKey,"json");
 };
+*/
 
 nil;

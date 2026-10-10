@@ -15,4 +15,4 @@ class CfgPatches {
 };
 
 #include "CfgEventHandlers.hpp"
-#include "dialogues\setupDialog.hpp"
+#include "dialogues\setupImportExportDialog.hpp"

@@ -1,150 +1,20 @@
 #include "ids.inc"
+#include "\x\A3A\addons\gui\dialogues\ids.inc"
+#include "\x\A3A\addons\gui\dialogues\defines.hpp"
+#include "\x\A3A\addons\core\ui_define.hpp"
 
-class A3A_Tree : A3A_Text
-{
-    type = CT_TREE;
-    style = ST_LEFT;
-
-    rowHeight = GUI_TEXT_SIZE_MEDIUM;
-    maxHistoryDelay = 1;
-    expandOnDoubleclick = 1;
-    multiselectEnabled = 0;
-    hiddenTexture = "\A3\ui_f\data\gui\rsccommon\rsctree\hiddenTexture_ca.paa";
-    expandedTexture = "\A3\ui_f\data\gui\rsccommon\rsctree\expandedTexture_ca.paa";
-    colorArrow[] = A3A_COLOR_TEXT;
-    colorBorder[] = A3A_COLOR_TRANSPARENT;
-    colorLines[] = A3A_COLOR_TRANSPARENT;
-    colorMarked[] = A3A_COLOR_TEXT;
-    colorMarkedSelected[] = A3A_COLOR_TEXT;
-    colorMarkedText[] = A3A_COLOR_TEXT;
-    colorMarkedBackground[] = A3A_COLOR_TRANSPARENT;
-    colorPicture[] = A3A_COLOR_WHITE;
-    colorPictureDisabled[] = {1,1,1,0.25};
-    colorPictureRight[] = A3A_COLOR_WHITE;
-    colorPictureRightDisabled[] = {1,1,1,0.25};
-    colorPictureRightSelected[] = A3A_COLOR_WHITE;
-    colorPictureSelected[] = A3A_COLOR_WHITE;
-    colorSearch[] = A3A_COLOR_TEXT;
-    colorSelect[] = A3A_COLOR_BUTTON_FOCUSED;
-    colorSelectBackground[] = A3A_COLOR_TITLEBAR_BACKGROUND;
-    colorSelectText[] = A3A_COLOR_TEXT;
-    colorDisabled[] = A3A_COLOR_BUTTON_TEXT_DISABLED;
-    colorBackground[] = A3A_COLOR_BACKGROUND;
-    colorText[] = A3A_COLOR_TEXT;
-};
+class A3A_ControlsGroupNoScrollbars;
+class A3A_Button;
+class A3A_Text;
+class A3A_Tree;
 
 class A3A_SetupImportExportDialog
 {
-    idd = A3A_IDD_SETUP_IMPORTEXPORTDIALOG;
-    onLoad = "['onLoad'] spawn a3ue_extsaves_gui_fnc_setupImportExportDialog";
-    onUnload = "['onUnload'] call a3ue_extsaves_gui_fnc_setupImportExportDialog";
-
-    #define DIALOG_X CENTER_X(120) // Global x pos of dialog
-    #define DIALOG_Y CENTER_Y(92) // Global y pos of dialog
+    #define DIALOG_X CENTER_X(160)
+    #define DIALOG_Y CENTER_Y(92)
 
     class Controls
     {
-        class Titlebar : A3A_Text {
-            idc = -1;
-            moving = true;
-            colorBackground[] = A3A_COLOR_TITLEBAR_BACKGROUND;
-            text = CSTRING(setup_import_export);
-            style = ST_CENTER + ST_UPPER;
-            font = A3A_BUTTON_FONT;
-            x = DIALOG_X;
-            y = DIALOG_Y;
-            w = 160 * GRID_W;
-            h = 4 * GRID_H;
-        };
-        class CloseButton : A3A_Button {
-            idc = -1;
-            text = CSTRING(setup_ie_close);
-            onButtonClick = "closeDialog 0";
-            x = DIALOG_X + 140 * GRID_W;
-            y = DIALOG_Y;
-            w = 18 * GRID_W;
-            h = 4 * GRID_H;
-        };
-        class Background : A3A_Background {
-            idc = -1;
-            x = DIALOG_X;
-            y = DIALOG_Y + 4 * GRID_H;
-            w = 160 * GRID_W;
-            h = 88 * GRID_H;
-        };
-
-        class SaveDataBoxGroup : A3A_ControlsGroupNoScrollbars {
-            x = DIALOG_X;
-            y = DIALOG_Y + 6 * GRID_H;
-            w = 80 * GRID_W;
-            h = 86 * GRID_H;
-
-            class Controls {
-                class SaveDataTitle : A3A_Text {
-                    idc = -1;
-                    text = CSTRING(setup_ie_savedata);
-                    colorBackground[] = A3A_COLOR_BLACK;
-                    style = ST_CENTER + ST_UPPERCASE;
-                    font = A3A_BUTTON_FONT;
-                    x = 0;
-                    y = 0;
-                    w = 60 * GRID_W;
-                    h = 4 * GRID_H;
-                };
-                class EditButton : A3A_Button {
-                    idc = A3A_IDC_SETUP_IMPORTEXPORT_EDITBUTTON;
-                    text = CSTRING(setup_ie_edit);
-                    onButtonClick = "['toggleEdit'] call a3ue_extsaves_gui_fnc_setupImportExportDialog";
-                    x = 60 * GRID_W;
-                    y = 0;
-                    w = 10 * GRID_W;
-                    h = 4 * GRID_H;
-                };
-                class ClearButton : EditButton {
-                    idc = A3A_IDC_SETUP_IMPORTEXPORT_CLEARBUTTON;
-                    text = CSTRING(setup_ie_clear);
-                    onButtonClick = "['clearData'] call a3ue_extsaves_gui_fnc_setupImportExportDialog";
-                    x = 70 * GRID_W;
-                };
-                class SaveDataBox : A3A_Edit {
-                    idc = A3A_IDC_SETUP_IMPORTEXPORT_SAVEDATABOX;
-                    style = ST_LEFT + ST_MULTI;
-                    colorDisabled[] = A3A_COLOR_TEXT;
-                    x = 0;
-                    y = 4 * GRID_H;
-                    w = 80 * GRID_W;
-                    h = 82 * GRID_H;
-                };
-            };
-        };
-        
-        class BasicImportExportGroup : A3A_ControlsGroupNoScrollbars {
-            x = DIALOG_X + 82 * GRID_W;
-            y = DIALOG_Y + 10 * GRID_H;
-            w = 28 * GRID_W;
-            h = 12 * GRID_H;
-
-            class Controls {
-                class ImportButton : A3A_Button {
-                    idc = A3A_IDC_SETUP_IMPORTEXPORT_IMPORTBUTTON;
-                    text = CSTRING(setup_ie_import);
-                    tooltip = CSTRING(setup_ie_import_tooltip);
-                    onButtonClick = "['importData'] call a3ue_extsaves_gui_fnc_setupImportExportDialog";
-                    x = 0;
-                    y = 0;
-                    w = 28 * GRID_W;
-                    h = 5 * GRID_H;
-                };
-                class ExportButton : ImportButton {
-                    idc = A3A_IDC_SETUP_IMPORTEXPORT_EXPORTBUTTON;
-                    text = CSTRING(setup_ie_export);
-                    tooltip = CSTRING(setup_ie_export_tooltip);
-                    onButtonClick = "['exportData'] call a3ue_extsaves_gui_fnc_setupImportExportDialog";
-                    y = 7 * GRID_H;
-                };
-            };
-        };
-
         class PythiaImportExportGroup : A3A_ControlsGroupNoScrollbars {
             x = DIALOG_X + 82 * GRID_W;
             y = DIALOG_Y + 26 * GRID_H;
