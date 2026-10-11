@@ -119,6 +119,12 @@ handles retention.
 
 In the A3U setup screen, select the 'Import / Export Game' button.
 
+![A3U setup dialog](images/a3u_setup_dialog.png)
+
+The dialog opens with an empty save data box:
+
+![Import / Export dialog on load](images/a3u_setup_import_export_dialog_onload.png)
+
 ### Importing a Save ###
 
 This addon does not alter the functionality of save importing from that included in Antistasi Ultimate itself; however, take note of the following important information:
@@ -133,14 +139,16 @@ To import a save, there must be valid, JSON-formatted save data in the save data
    b. Click the Pythia button to show all save data previously exported by Pythia. Select one of the entries on the right side to load it into the save data box, OR
 
    c. Paste save data manually into the save data box.
-2. Click **Import Text**
+2. Click **Text Import**
 3. A hint confirms success or failure.
+
+![Import / Export dialog with save data loaded from the Arma 3 namespace](images/a3u_setup_import_export_dialog_savedata_loaded.png)
 
 ### Exporting a save ###
 
 1. To export a save, there must be valid, JSON-formatted save data in the save data box. See [Importing a Save](#importing-a-save).
 2. 
-   a. Click **Export Text** to copy the save data shown to your clipboard for manually pasting wherever you would like to keep it ([only works when local hosting, due to Arma 3 security restrictions](https://community.bistudio.com/wiki/copyToClipboard)), OR
+   a. Click **Text Export** to copy the save data shown to your clipboard for manually pasting wherever you would like to keep it ([only works when local hosting, due to Arma 3 security restrictions](https://community.bistudio.com/wiki/copyToClipboard)), OR
 
    b. Click **Pythia Export** under "External Export" to export the data to a new `*.json` file.
 
@@ -154,6 +162,8 @@ To import a save, there must be valid, JSON-formatted save data in the save data
    Archived entries show their timestamp in brackets.
 3. The JSON is loaded into the save data box, where it can be imported with the
    standard A3U import controls.
+
+![Import / Export dialog with save data loaded from a Pythia file](images/a3u_setup_import_export_dialog_pythia_savedata_loaded.png)
 
 Click **Arma 3 Namespace** to go back to the normal save list.
 
