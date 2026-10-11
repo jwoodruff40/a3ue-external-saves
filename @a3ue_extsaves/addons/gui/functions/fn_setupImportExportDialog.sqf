@@ -63,8 +63,6 @@ switch (_mode) do
     {
         _params params [["_control", controlNull, [controlNull]]];
 
-        diag_log format ["Select datastore control: %1", _control];
-
         // TODO: set ctrl active color
 
         private ["_show", "_hide"];
@@ -83,9 +81,7 @@ switch (_mode) do
                 _hide = [A3A_IDC_SETUP_IMPORTEXPORT_SAVELISTGROUP, A3A_IDC_SETUP_IMPORTEXPORT_PYTHIA_SAVELISTGROUP]
             };
         };
-        diag_log format ["Hide controls: %1", _hide];
         { ctrlShow [_x, false] } forEach _hide;
-        diag_log format ["Show control: %1", _show];
         ctrlShow [_show, true];
     };
 
@@ -96,10 +92,8 @@ switch (_mode) do
         private _saveDataJson = ctrlText _saveDataBox;
         if (_saveDataJson isEqualTo "") exitWith {};
         
-        private _saveDataHM = ["jsonToHashmap", [_saveDataJson]] call A3A_fnc_setupImportExportDialog;
-        diag_log format ["Converted save data JSON to HashMap: %1", _saveDataHM];
-        private _campaignID = _saveDataHM get "campaignID";
-        diag_log format ["Extracted campaign ID from save data HashMap: %1", _campaignID];
+        private _saveDataHM = ["jsonToHashmap", [_saveDataJson]] call A3A_fnc_setupImportExportDialog; // py3u: private _saveDataDict = ["py3u.savedata.json_to_dict", [_saveDataJson]] call py3_fnc_callExtension;
+        private _campaignID = _saveDataHM get "campaignID"; // py3u: private _campaignID = ["py3u.savedata.get_saved", [_saveDataDict, "campaignID"]] call py3_fnc_callExtension;
         if (isNil "_campaignID") exitWith {};
 
         ["exportPythiaServer", [_campaignID, _saveDataJson]] remoteExec ["a3ue_extsaves_gui_fnc_setupImportExportDialog", 2];
@@ -160,9 +154,21 @@ switch (_mode) do
                 _parentPath = [_control tvAdd [[], _folder]];
             };
             {
-                private _name = (_x splitString "/\") select -1;
-                private _itemPath = _control tvAdd [_parentPath, _name];
-                _control tvSetData [_parentPath + [_itemPath], _x];
+                private _tooltip = (_x splitString "/\") select -1;
+                private _saveDataJson = ["py3u.filesys.read_data", [_x]] call py3_fnc_callExtension;
+                if (_saveDataJson isEqualTo "") then {
+                    Error_1("File could not be read or returned empty data: %1",_x);
+                    continue
+                };
+                private _saveDataHM = ["jsonToHashmap", [_saveDataJson]] call A3A_fnc_setupImportExportDialog;
+                private _name = _saveDataHM getOrDefault ["name", _tooltip];
+                private _formattedName = if (_folder isEqualTo "") then { _name } else {
+                    format ["%1 [%2]", _name, (_x splitString "_.") select -2];
+                };
+                
+                private _itemPath = _control tvAdd [_parentPath, _formattedName];
+                _control tvSetData [_parentPath + [_itemPath], _saveDataJson];
+                _control tvSetTooltip [_parentPath + [_itemPath], _tooltip];
             } forEach _folderFiles;
         } forEach ["", "daily", "weekly", "monthly", "yearly"];
 
@@ -173,17 +179,9 @@ switch (_mode) do
     {
         _params params ["_control", "_selectionPath"];
 
-        private _filePath = _control tvData _selectionPath;
-        private _saveDataJson = ["py3u.filesys.read_data", [_filePath]] call py3_fnc_callExtension;
-        if (_saveDataJson isEqualTo "") exitWith {
-            Error_1("File could not be read or returned empty data: %1",_filePath);
-        };
-
+        private _saveDataJson = _control tvData _selectionPath;
         _saveDataBox ctrlSetText _saveDataJson;
         ["fitText"] call A3A_fnc_setupImportExportDialog;
         (_display displayCtrl A3A_IDC_SETUP_IMPORTEXPORT_SAVEDATAGROUP) ctrlSetScrollValues [0, -1];
     };
 };
-
-// Commented just for an example on the LLSTRING MACRO
-// [LLSTRING(setup_import_export), LLSTRING(setup_ie_import_success)] call A3A_fnc_customHint;

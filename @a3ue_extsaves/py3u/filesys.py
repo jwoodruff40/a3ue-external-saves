@@ -77,7 +77,7 @@ def write_data(file_name: str, file_content: str, file_type: str) -> bool:
             return False
     
     if file_type == "json":
-        data: dict = json.loads(file_content)
+        data = json.loads(file_content)
     else:
         data = file_content
     
