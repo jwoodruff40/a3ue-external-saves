@@ -22,21 +22,21 @@ class A3A_SetupImportExportDialog
             onButtonClick = "[""clearData""] call a3ue_extsaves_gui_fnc_setupImportExportDialog";
         };
 
-        class ExtendedImportExportGroup : A3A_ControlsGroupNoScrollbars {
+        class ExtendedImportGroup : A3A_ControlsGroupNoScrollbars {
             x = DIALOG_X + 82 * GRID_W;
             y = DIALOG_Y + 26 * GRID_H;
             w = 28 * GRID_W;
             h = 22 * GRID_H;
 
             class Controls {
-                class ExtendedImportExportBackground : A3A_Background {
+                class ExtendedImportBackground : A3A_Background {
                     idc = -1;
                     x = 0;
                     y = 0;
                     w = 28 * GRID_W;
                     h = 22 * GRID_H;
                 };
-                class ExtendedImportExportTitle : A3A_Text {
+                class ExtendedImportTitle : A3A_Text {
                     idc = -1;
                     text = CSTRING(setup_ie_datastore_text);
                     tooltip = CSTRING(setup_ie_datastore_tooltip);
@@ -71,6 +71,34 @@ class A3A_SetupImportExportDialog
                     tooltip = CSTRING(setup_ie_datastore_inidbi2_tooltip);
                     onLoad = "(_this select 0) ctrlEnable isClass (configFile >> ""CfgPatches"" >> ""inidbi2"")";
                     y = 17 * GRID_H;
+                };
+            };
+        };
+
+        class ExtendedExportGroup : ExtendedImportGroup {
+            y = DIALOG_Y + 52 * GRID_H;
+            h = 17 * GRID_H;
+
+            class Controls : Controls {
+                class ExtendedExportBackground : ExtendedImportBackground {
+                    h = 17 * GRID_H;
+                };
+                class ExtendedExportTitle : ExtendedImportTitle {
+                    text = CSTRING(setup_ie_ext_export_title);
+                    tooltip = CSTRING(setup_ie_ext_export_tooltip);
+                };
+                delete NamespaceButton;
+                class PythiaExportButton : PythiaButton {
+                    idc = A3A_IDC_SETUP_IMPORTEXPORT_PYTHIA_EXPORTBUTTON;
+                    text = CSTRING(setup_ie_ext_export_pythia_text);
+                    tooltip = CSTRING(setup_ie_ext_export_pythia_tooltip);
+                    y = 7 * GRID_H;
+                };
+                class Inidbi2ExportButton : Inidbi2Button {
+                    idc = A3A_IDC_SETUP_IMPORTEXPORT_INIDBI2_EXPORTBUTTON;
+                    text = CSTRING(setup_ie_ext_export_inidbi2_text);
+                    tooltip = CSTRING(setup_ie_ext_export_inidbi2_tooltip);
+                    y = 12 * GRID_H;
                 };
             };
         };
