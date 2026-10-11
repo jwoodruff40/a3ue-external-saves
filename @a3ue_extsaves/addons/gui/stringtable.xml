@@ -1,80 +1,55 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Project name="A3UE_EXTSAVES">
     <Package name="GUI">
-        <Key ID="STR_A3UE_EXTSAVES_GUI_setup_ie_clear">
-            <Original>Clear</Original>
-        </Key>
-        <Key ID="STR_A3UE_EXTSAVES_GUI_setup_ie_close">
-            <Original>Close</Original>
-        </Key>
-        <Key ID="STR_A3UE_EXTSAVES_GUI_setup_ie_copied">
-            <Original>Save data has been copied to your clipboard.</Original>
-        </Key>
-        <Key ID="STR_A3UE_EXTSAVES_GUI_setup_ie_edit">
-            <Original>Edit</Original>
-        </Key>
-        <Key ID="STR_A3UE_EXTSAVES_GUI_setup_ie_export">
-            <Original>Text Export</Original>
-        </Key>
-        <Key ID="STR_A3UE_EXTSAVES_GUI_setup_ie_export_tooltip">
-            <Original>Copy the text in the save data box to your clipboard.</Original>
-        </Key>
-        <Key ID="STR_A3UE_EXTSAVES_GUI_setup_ie_filesystem_text">
-            <Original>Filesystem</Original>
-        </Key>
-        <Key ID="STR_A3UE_EXTSAVES_GUI_setup_ie_import">
-            <Original>Text Import</Original>
-        </Key>
-        <Key ID="STR_A3UE_EXTSAVES_GUI_setup_ie_import_empty">
-            <Original>Paste JSON-formatted save data into the save data box to import it.</Original>
-        </Key>
-        <Key ID="STR_A3UE_EXTSAVES_GUI_setup_ie_import_invalid">
-            <Original>The save data is not valid JSON. Check the data and try again.</Original>
-        </Key>
-        <Key ID="STR_A3UE_EXTSAVES_GUI_setup_ie_import_success">
-            <Original>Save data imported as a new campaign save.</Original>
-        </Key>
-        <Key ID="STR_A3UE_EXTSAVES_GUI_setup_ie_import_tooltip">
-            <Original>Import the text in the save data box as a new campaign save.</Original>
-        </Key>
-        <Key ID="STR_A3UE_EXTSAVES_GUI_setup_ie_inidbi2_export">
-            <Original>iniDBI2 Export</Original>
-        </Key>
-        <Key ID="STR_A3UE_EXTSAVES_GUI_setup_ie_inidbi2_export_tooltip">
-            <Original>Export save data to an iniDBI2 database using the iniDBI2 extension.</Original>
-        </Key>
-        <Key ID="STR_A3UE_EXTSAVES_GUI_setup_ie_inidbi2_import">
-            <Original>iniDBI2 Import</Original>
-        </Key>
-        <Key ID="STR_A3UE_EXTSAVES_GUI_setup_ie_inidbi2_import_tooltip">
-            <Original>Import save data from an iniDBI2 database using the iniDBI2 extension.</Original>
-        </Key>
-        <Key ID="STR_A3UE_EXTSAVES_GUI_setup_ie_pythia_export">
-            <Original>Pythia Export</Original>
-        </Key>
-        <Key ID="STR_A3UE_EXTSAVES_GUI_setup_ie_pythia_export_tooltip">
-            <Original>Export save data to a JSON file on disk using the Pythia extension.</Original>
-        </Key>
-        <Key ID="STR_A3UE_EXTSAVES_GUI_setup_ie_pythia_import">
-            <Original>Pythia Import</Original>
-        </Key>
-        <Key ID="STR_A3UE_EXTSAVES_GUI_setup_ie_pythia_import_tooltip">
-            <Original>Import save data from a JSON file on disk using the Pythia extension.</Original>
-        </Key>
-        <Key ID="STR_A3UE_EXTSAVES_GUI_setup_ie_savedata">
-            <Original>Save Data</Original>
-        </Key>
-        <Key ID="STR_A3UE_EXTSAVES_GUI_setup_import_export">
-            <Original>Import / Export Game</Original>
-            <Czech>Importovat / exportovat hru</Czech>
-            <French>Importer / exporter la partie</French>
-            <Italian>Importa / esporta partita</Italian>
-            <Polish>Importuj / eksportuj grę</Polish>
-            <Portuguese>Importar / exportar jogo</Portuguese>
-            <Russian>Импорт / экспорт игры</Russian>
-            <Korean>게임 가져오기 / 내보내기</Korean>
-            <Chinesesimp>导入/导出游戏</Chinesesimp>
-            <Turkish>Oyunu içe aktar / dışa aktar</Turkish>
-        </Key>
+        <Container name="Datastores">
+            <Key ID="STR_A3UE_EXTSAVES_GUI_setup_ie_datastore_text">
+                <Original>Datastore</Original>
+            </Key>
+            <Key ID="STR_A3UE_EXTSAVES_GUI_setup_ie_datastore_tooltip">
+                <Original>Select which datastore to load save data from</Original>
+            </Key>
+            <Key ID="STR_A3UE_EXTSAVES_GUI_setup_ie_datastore_namespace_text">
+                <Original>Arma 3 Namespace</Original>
+            </Key>
+            <Key ID="STR_A3UE_EXTSAVES_GUI_setup_ie_datastore_namespace_tooltip">
+                <Original>Load saves stored in your Arma 3 native namespace(s) (profileNamespace | missionProfileNamespace)</Original>
+            </Key>
+            <Key ID="STR_A3UE_EXTSAVES_GUI_setup_ie_datastore_pythia_text">
+                <Original>Pythia</Original>
+            </Key>
+            <Key ID="STR_A3UE_EXTSAVES_GUI_setup_ie_datastore_pythia_tooltip">
+                <Original>Load saves stored on your computer's filesystem with the Pythia extension</Original>
+            </Key>
+            <Key ID="STR_A3UE_EXTSAVES_GUI_setup_ie_datastore_inidbi2_text">
+                <Original>Inidbi2</Original>
+            </Key>
+            <Key ID="STR_A3UE_EXTSAVES_GUI_setup_ie_datastore_inidbi2_tooltip">
+                <Original>Load saves stored on your computer's filesystem with the Inidbi2 extension</Original>
+            </Key>
+        </Container>
+        <Container name="Namespace">
+            <Key ID="STR_A3UE_EXTSAVES_GUI_setup_ie_namespace_savelist_text">
+                <Original>Arma 3 Namespace Saves</Original>
+            </Key>
+            <Key ID="STR_A3UE_EXTSAVES_GUI_setup_ie_namespace_savelist_tooltip">
+                <Original>List of saves stored in the Arma 3 namespace</Original>
+            </Key>
+        </Container>
+        <Container name="Pythia">
+            <Key ID="STR_A3UE_EXTSAVES_GUI_setup_ie_pythia_savelist_text">
+                <Original>Pythia Saves</Original>
+            </Key>
+            <Key ID="STR_A3UE_EXTSAVES_GUI_setup_ie_pythia_savelist_tooltip">
+                <Original>Directory listing of saves stored with the Pythia extension</Original>
+            </Key>
+        </Container>
+        <Container name="Inidbi2">
+            <Key ID="STR_A3UE_EXTSAVES_GUI_setup_ie_inidbi2_savelist_text">
+                <Original>Inidbi2 Saves</Original>
+            </Key>
+            <Key ID="STR_A3UE_EXTSAVES_GUI_setup_ie_inidbi2_savelist_tooltip">
+                <Original>List of saves stored with the Inidbi2 extension</Original>
+            </Key>
+        </Container>
     </Package>
 </Project>

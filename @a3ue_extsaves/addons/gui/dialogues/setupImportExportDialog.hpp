@@ -4,8 +4,10 @@
 #include "\x\A3A\addons\core\ui_define.hpp"
 
 class A3A_ControlsGroupNoScrollbars;
+class A3A_Background;
 class A3A_Button;
 class A3A_Text;
+class A3A_ListBox;
 class A3A_Tree;
 
 class A3A_SetupImportExportDialog
@@ -15,85 +17,108 @@ class A3A_SetupImportExportDialog
 
     class Controls
     {
-        class PythiaImportExportGroup : A3A_ControlsGroupNoScrollbars {
+        class EditButton;
+        class ClearButton : EditButton {
+            onButtonClick = "[""clearData""] call a3ue_extsaves_gui_fnc_setupImportExportDialog";
+        };
+
+        class ExtendedImportExportGroup : A3A_ControlsGroupNoScrollbars {
             x = DIALOG_X + 82 * GRID_W;
             y = DIALOG_Y + 26 * GRID_H;
             w = 28 * GRID_W;
-            h = 12 * GRID_H;
+            h = 22 * GRID_H;
 
             class Controls {
-                class PythiaImportButton : A3A_Button {
-                    idc = A3A_IDC_SETUP_IMPORTEXPORT_PYTHIA_IMPORTBUTTON;
-                    text = CSTRING(setup_ie_pythia_import);
-                    tooltip = CSTRING(setup_ie_pythia_import_tooltip);
-                    onButtonClick = "['importPythia'] call a3ue_extsaves_gui_fnc_setupImportExportDialog";
-                    x = 0;
-                    y = 0;
-                    w = 28 * GRID_W;
-                    h = 5 * GRID_H;
-                };
-                class PythiaExportButton : PythiaImportButton {
-                    idc = A3A_IDC_SETUP_IMPORTEXPORT_PYTHIA_EXPORTBUTTON;
-                    text = CSTRING(setup_ie_pythia_export);
-                    tooltip = CSTRING(setup_ie_pythia_export_tooltip);
-                    onButtonClick = "['exportPythia'] call a3ue_extsaves_gui_fnc_setupImportExportDialog";
-                    y = 7 * GRID_H;
-                };
-            };
-        };
-
-        class Inidbi2ImportExportGroup : A3A_ControlsGroupNoScrollbars {
-            x = DIALOG_X + 82 * GRID_W;
-            y = DIALOG_Y + 42 * GRID_H;
-            w = 28 * GRID_W;
-            h = 12 * GRID_H;
-
-            class Controls {
-                class Inidbi2ImportButton : A3A_Button {
-                    idc = A3A_IDC_SETUP_IMPORTEXPORT_INIDBI2_IMPORTBUTTON;
-                    text = CSTRING(setup_ie_inidbi2_import);
-                    tooltip = CSTRING(setup_ie_inidbi2_import_tooltip);
-                    onButtonClick = "['importInidbi2'] call a3ue_extsaves_gui_fnc_setupImportExportDialog";
-                    x = 0;
-                    y = 0;
-                    w = 28 * GRID_W;
-                    h = 5 * GRID_H;
-                };
-                class Inidbi2ExportButton : Inidbi2ImportButton {
-                    idc = A3A_IDC_SETUP_IMPORTEXPORT_INIDBI2_EXPORTBUTTON;
-                    text = CSTRING(setup_ie_inidbi2_export);
-                    tooltip = CSTRING(setup_ie_inidbi2_export_tooltip);
-                    onButtonClick = "['exportInidbi2'] call a3ue_extsaves_gui_fnc_setupImportExportDialog";
-                    y = 7 * GRID_H;
-                };
-            };
-        };
-
-        class FileSystemGroup : A3A_ControlsGroupNoScrollbars {
-            x = DIALOG_X + 110 * GRID_W;
-            y = DIALOG_Y + 2 * GRID_H;
-            w = 50 * GRID_W;
-            h = 92 * GRID_H;
-
-            class Controls {
-                class FileSystemText : A3A_Text {
+                class ExtendedImportExportBackground : A3A_Background {
                     idc = -1;
-                    text = CSTRING(setup_ie_filesystem_text);
+                    x = 0;
+                    y = 0;
+                    w = 28 * GRID_W;
+                    h = 22 * GRID_H;
+                };
+                class ExtendedImportExportTitle : A3A_Text {
+                    idc = -1;
+                    text = CSTRING(setup_ie_datastore_text);
+                    tooltip = CSTRING(setup_ie_datastore_tooltip);
                     colorBackground[] = A3A_COLOR_BLACK;
                     style = ST_CENTER + ST_UPPERCASE;
                     font = A3A_BUTTON_FONT;
-                    x = 2 * GRID_W;
-                    y = 4 * GRID_H;
-                    w = 46 * GRID_W;
-                    h = 4 * GRID_H;
+                    x = 0;
+                    y = 0;
+                    w = 28 * GRID_W;
+                    h = 5 * GRID_H;
                 };
-                class FileSystemTree : A3A_Tree {
-                    idc = A3A_IDC_SETUP_IMPORTEXPORT_FILETREE;
+                class NamespaceButton : A3A_Button {
+                    idc = A3A_IDC_SETUP_IMPORTEXPORT_NAMESPACE_BUTTON;
+                    text = CSTRING(setup_ie_datastore_namespace_text);
+                    tooltip = CSTRING(setup_ie_datastore_namespace_tooltip);
+                    onButtonClick = "[""selectDatastore"", _this] call a3ue_extsaves_gui_fnc_setupImportExportDialog";
+                    x = 0;
+                    y = 7 * GRID_H;
+                    w = 28 * GRID_W;
+                    h = 5 * GRID_H;
+                };
+                class PythiaButton : NamespaceButton {
+                    idc = A3A_IDC_SETUP_IMPORTEXPORT_PYTHIA_BUTTON;
+                    text = CSTRING(setup_ie_datastore_pythia_text);
+                    tooltip = CSTRING(setup_ie_datastore_pythia_tooltip);
+                    onLoad = "(_this select 0) ctrlEnable isClass (configFile >> ""CfgPatches"" >> ""PY3_Pythia"")";
+                    y = 12 * GRID_H;
+                };
+                class Inidbi2Button : PythiaButton {
+                    idc = A3A_IDC_SETUP_IMPORTEXPORT_INIDBI2_BUTTON;
+                    text = CSTRING(setup_ie_datastore_inidbi2_text);
+                    tooltip = CSTRING(setup_ie_datastore_inidbi2_tooltip);
+                    onLoad = "(_this select 0) ctrlEnable isClass (configFile >> ""CfgPatches"" >> ""inidbi2"")";
+                    y = 17 * GRID_H;
+                };
+            };
+        };
+
+        class SaveListGroup : A3A_ControlsGroupNoScrollbars {
+            idc = A3A_IDC_SETUP_IMPORTEXPORT_SAVELISTGROUP;
+            class Controls {
+                class SaveListText : A3A_Text {
+                    text = CSTRING(setup_ie_namespace_savelist_text);
+                    tooltip = CSTRING(setup_ie_namespace_savelist_tooltip);
+                };
+            };
+        };
+
+        class PythiaSavesGroup : SaveListGroup {
+            idc = A3A_IDC_SETUP_IMPORTEXPORT_PYTHIA_SAVELISTGROUP;
+            show = 0;
+            class Controls : Controls {
+                class PythiaSavesText : SaveListText {
+                    text = CSTRING(setup_ie_pythia_savelist_text);
+                    tooltip = CSTRING(setup_ie_pythia_savelist_tooltip);
+                };
+                delete SaveListBox;
+                class PythiaSavesTree : A3A_Tree {
+                    idc = A3A_IDC_SETUP_IMPORTEXPORT_PYTHIA_TREE;
                     x = 2 * GRID_W;
                     y = 8 * GRID_H;
                     w = 46 * GRID_W;
-                    h = 82 * GRID_H;
-                    onTreeSelChanged = "['treeSelChanged', _this] call a3ue_extsaves_gui_fnc_setupImportExportDialog";
+                    h = 80 * GRID_H;
+                    onLoad = "[""pythiaTreePopulate"", [_this select 0]] call a3ue_extsaves_gui_fnc_setupImportExportDialog";
+                    onTreeSelChanged = "[""pythiaTreeSelChanged"", _this] call a3ue_extsaves_gui_fnc_setupImportExportDialog";
+                };
+            };
+        };
+
+        class Inidbi2SavesGroup : SaveListGroup {
+            idc = A3A_IDC_SETUP_IMPORTEXPORT_INIDBI2_SAVELISTGROUP;
+            show = 0;
+            class Controls : Controls {
+                class Inidbi2SavesText : SaveListText {
+                    text = CSTRING(setup_ie_inidbi2_savelist_text);
+                    tooltip = CSTRING(setup_ie_inidbi2_savelist_tooltip);
+                };
+                class SaveListBox;
+                class Inidbi2SaveListBox : SaveListBox {
+                    idc = A3A_IDC_SETUP_IMPORTEXPORT_INIDBI2_SAVELB;
+                    onLoad = "";
+                    onLBSelChanged = "";
                 };
             };
         };
