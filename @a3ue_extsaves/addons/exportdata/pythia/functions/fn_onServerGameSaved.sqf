@@ -33,22 +33,15 @@ if !assert(params[
     ["_worldName", nil, [""]]
 ]) exitWith {};
 
-/*
 private _namespace = [profileNamespace, missionProfileNamespace] select (_useMPNamespace);
-private _saveDataKey = format ([["savedata%1%2%3%4", _serverID, _campaignID, "Antistasi", _worldName], ["savedata%1", _campaignID]] select (_useMPNamespace));
-private _saveData = _namespace getVariable _saveDataKey;
+private _saveDataKey = format ["A3A_saveData_%1", _campaignID];
+private _saveDataHM = _namespace getVariable _saveDataKey;
 
-if (isNil "_saveData") exitWith {
+if (isNil "_saveDataHM") exitWith {
     Info_1("Server attempted to export save data but it was not found: %1",_saveDataKey);
 };
 
-private _exportSuccess = [_saveDataKey, _saveData, "json"] call a3ue_extsaves_exportdata_pythia_fnc_exportData;
-
-if (_exportSuccess) then {
-    Info_2("Server exported save data to file: %1.%2",_saveDataKey,"json");
-} else {
-    Error_2("Server failed to export save data for %1.%2. Check logs for more information.",_saveDataKey,"json");
-};
-*/
+private _saveDataJson = ["HashmapToJson", [_saveDataHM]] call A3A_fnc_setupImportExportDialog;
+["exportPythiaServer", [_campaignID, _saveDataJson]] remoteExec ["a3ue_extsaves_gui_fnc_setupImportExportDialog", 2];
 
 nil;

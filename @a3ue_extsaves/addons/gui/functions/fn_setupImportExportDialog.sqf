@@ -13,15 +13,14 @@
         N/A
     
     Scope:
-        Server for registerSaveData, getSavesFromServer modes
+        Server for exportPythiaServer, exportInidbi2Server modes
         Client for all other modes
     
     Environment:
-        Scheduled for onLoad and xxxLBSelChanged modes
-        Unscheduled for all other modes unless specified
+        Unscheduled for all modes unless otherwise specified
     
     Usage:
-        ["importPythia", []] call a3ue_extsaves_gui_fnc_setupImportExportDialog;
+        ["clearData", []] call a3ue_extsaves_gui_fnc_setupImportExportDialog;
     
     Return:
         None
@@ -37,7 +36,6 @@ params ["_mode", "_params"];
 Debug_1("Setup Import/Export dialog called with mode %1",_mode);
 
 private _display = findDisplay A3A_IDD_SETUP_IMPORTEXPORTDIALOG;
-private _saveDataBoxGroup = _display displayCtrl A3A_IDC_SETUP_IMPORTEXPORT_SAVEDATAGROUP;
 private _saveDataBox = _display displayCtrl A3A_IDC_SETUP_IMPORTEXPORT_SAVEDATABOX;
 
 switch (_mode) do
@@ -76,6 +74,7 @@ switch (_mode) do
                 _hide = [A3A_IDC_SETUP_IMPORTEXPORT_PYTHIA_SAVELISTGROUP, A3A_IDC_SETUP_IMPORTEXPORT_INIDBI2_SAVELISTGROUP]
             };
             case (A3A_IDC_SETUP_IMPORTEXPORT_PYTHIA_BUTTON): {
+                ["pythiaTreePopulate", (_display displayCtrl A3A_IDC_SETUP_IMPORTEXPORT_PYTHIA_TREE)] call a3ue_extsaves_gui_fnc_setupImportExportDialog;
                 _show = A3A_IDC_SETUP_IMPORTEXPORT_PYTHIA_SAVELISTGROUP;
                 _hide = [A3A_IDC_SETUP_IMPORTEXPORT_SAVELISTGROUP, A3A_IDC_SETUP_IMPORTEXPORT_INIDBI2_SAVELISTGROUP]
             };
@@ -90,13 +89,39 @@ switch (_mode) do
         ctrlShow [_show, true];
     };
 
-    case ("exportPythia"):
+    case ("exportPythiaClient"):
     {
-        // TODO: export save data to a JSON file via Pythia
-        //private _pythiaExportBtn = _display displayCtrl A3A_IDC_SETUP_IMPORTEXPORT_PYTHIA_EXPORTBUTTON;
+        _params params [["_control", controlNull, [controlNull]]];
+
+        private _saveDataJson = ctrlText _saveDataBox;
+        if (_saveDataJson isEqualTo "") exitWith {};
+        
+        private _saveDataHM = ["jsonToHashmap", [_saveDataJson]] call A3A_fnc_setupImportExportDialog;
+        diag_log format ["Converted save data JSON to HashMap: %1", _saveDataHM];
+        private _campaignID = _saveDataHM get "campaignID";
+        diag_log format ["Extracted campaign ID from save data HashMap: %1", _campaignID];
+        if (isNil "_campaignID") exitWith {};
+
+        ["exportPythiaServer", [_campaignID, _saveDataJson]] remoteExec ["a3ue_extsaves_gui_fnc_setupImportExportDialog", 2];
     };
 
-    case ("exportInidbi2"):
+    case ("exportPythiaServer"):
+    {
+        if (!isServer) exitWith { ["exportPythiaServer", _params] remoteExec ["a3ue_extsaves_gui_fnc_setupImportExportDialog", 2] };
+        _params params [["_campaignID", nil, [""]], ["_saveDataJson", nil, [""]]];
+
+        private _saveDataKey = format ["A3A_saveData_%1", _campaignID];
+        private _exportSuccess = [_saveDataKey, _saveDataJson, "json"] call a3ue_extsaves_exportdata_pythia_fnc_exportData;
+        if (_exportSuccess) then {
+            Info_2("Server exported save data to file: %1.%2",_saveDataKey,"json");
+            [LLSTRING(setup_ie_import_export), format [LLSTRING(setup_ie_hints_pythia_export_success), _saveDataKey, "json"]] call A3A_fnc_customHint;
+        } else {
+            Error_2("Server failed to export save data for %1.%2. Check logs for more information.",_saveDataKey,"json");
+            [LLSTRING(setup_ie_import_export), LLSTRING(setup_ie_hints_pythia_export_failure)] call A3A_fnc_customHint;
+        };
+    };
+
+    case ("exportInidbi2Client"):
     {
         // TODO: export save data to an inidbi2 database
         //private _inidbi2ExportBtn = _display displayCtrl A3A_IDC_SETUP_IMPORTEXPORT_INIDBI2_EXPORTBUTTON;
@@ -111,8 +136,8 @@ switch (_mode) do
         // Clear and repopulate the file tree with available Pythia export files
         tvClear _control;
 
-        private _basePath = "a3u_exports/pythia";
-        private _files = ["py3u.filesys.get_files", [_basePath, "^savedata.*\.json$"]] call py3_fnc_callExtension;
+        private _basePath = "a3ue_extsaves/pythia";
+        private _files = ["py3u.filesys.get_files", [_basePath, "^A3A_saveData_.*\.json$"]] call py3_fnc_callExtension;
         if (isNil "_files" || {!(_files isEqualType [])}) exitWith {};
 
         // Group by subfolder; files directly in the base folder use ""
@@ -156,7 +181,7 @@ switch (_mode) do
 
         _saveDataBox ctrlSetText _saveDataJson;
         ["fitText"] call A3A_fnc_setupImportExportDialog;
-        _saveDataBoxGroup ctrlSetScrollValues [0, -1];
+        (_display displayCtrl A3A_IDC_SETUP_IMPORTEXPORT_SAVEDATAGROUP) ctrlSetScrollValues [0, -1];
     };
 };
 

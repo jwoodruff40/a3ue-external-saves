@@ -2,11 +2,11 @@
 <Project name="A3UE_EXTSAVES">
     <Package name="GUI">
         <Container name="Datastores">
-            <Key ID="STR_A3UE_EXTSAVES_GUI_setup_ie_datastore_text">
-                <Original>Select Datastore</Original>
+            <Key ID="STR_A3UE_EXTSAVES_GUI_setup_ie_datastore_inidbi2_text">
+                <Original>Inidbi2</Original>
             </Key>
-            <Key ID="STR_A3UE_EXTSAVES_GUI_setup_ie_datastore_tooltip">
-                <Original>Select which datastore to load save data from</Original>
+            <Key ID="STR_A3UE_EXTSAVES_GUI_setup_ie_datastore_inidbi2_tooltip">
+                <Original>Load saves stored on your computer's filesystem with the Inidbi2 extension</Original>
             </Key>
             <Key ID="STR_A3UE_EXTSAVES_GUI_setup_ie_datastore_namespace_text">
                 <Original>Arma 3 Namespace</Original>
@@ -20,19 +20,19 @@
             <Key ID="STR_A3UE_EXTSAVES_GUI_setup_ie_datastore_pythia_tooltip">
                 <Original>Load saves stored on your computer's filesystem with the Pythia extension</Original>
             </Key>
-            <Key ID="STR_A3UE_EXTSAVES_GUI_setup_ie_datastore_inidbi2_text">
-                <Original>Inidbi2</Original>
+            <Key ID="STR_A3UE_EXTSAVES_GUI_setup_ie_datastore_text">
+                <Original>Select Datastore</Original>
             </Key>
-            <Key ID="STR_A3UE_EXTSAVES_GUI_setup_ie_datastore_inidbi2_tooltip">
-                <Original>Load saves stored on your computer's filesystem with the Inidbi2 extension</Original>
+            <Key ID="STR_A3UE_EXTSAVES_GUI_setup_ie_datastore_tooltip">
+                <Original>Select which datastore to load save data from</Original>
             </Key>
         </Container>
         <Container name="ExtendedExport">
-            <Key ID="STR_A3UE_EXTSAVES_GUI_setup_ie_ext_export_title">
-                <Original>External Export</Original>
+            <Key ID="STR_A3UE_EXTSAVES_GUI_setup_ie_ext_export_inidbi2_text">
+                <Original>Inidbi2 Export</Original>
             </Key>
-            <Key ID="STR_A3UE_EXTSAVES_GUI_setup_ie_ext_export_tooltip">
-                <Original>Export the save data shown to your computer's filesystem using extensions</Original>
+            <Key ID="STR_A3UE_EXTSAVES_GUI_setup_ie_ext_export_inidbi2_tooltip">
+                <Original>Export the save data shown to your computer's filesystem with the Inidbi2 extension</Original>
             </Key>
             <Key ID="STR_A3UE_EXTSAVES_GUI_setup_ie_ext_export_pythia_text">
                 <Original>Pythia Export</Original>
@@ -40,11 +40,24 @@
             <Key ID="STR_A3UE_EXTSAVES_GUI_setup_ie_ext_export_pythia_tooltip">
                 <Original>Export the save data shown to your computer's filesystem with the Pythia extension</Original>
             </Key>
-            <Key ID="STR_A3UE_EXTSAVES_GUI_setup_ie_ext_export_inidbi2_text">
-                <Original>Inidbi2 Export</Original>
+            <Key ID="STR_A3UE_EXTSAVES_GUI_setup_ie_ext_export_title">
+                <Original>External Export</Original>
             </Key>
-            <Key ID="STR_A3UE_EXTSAVES_GUI_setup_ie_ext_export_inidbi2_tooltip">
-                <Original>Export the save data shown to your computer's filesystem with the Inidbi2 extension</Original>
+            <Key ID="STR_A3UE_EXTSAVES_GUI_setup_ie_ext_export_tooltip">
+                <Original>Export the save data shown to your computer's filesystem using extensions</Original>
+            </Key>
+        </Container>
+        <Container name="ImportExport">
+            <Key ID="STR_A3UE_EXTSAVES_GUI_setup_ie_import_export">
+                <Original>A3UE External Saves</Original>
+            </Key>
+        </Container>
+        <Container name="Inidbi2">
+            <Key ID="STR_A3UE_EXTSAVES_GUI_setup_ie_inidbi2_savelist_text">
+                <Original>Inidbi2 Saves</Original>
+            </Key>
+            <Key ID="STR_A3UE_EXTSAVES_GUI_setup_ie_inidbi2_savelist_tooltip">
+                <Original>List of saves stored with the Inidbi2 extension</Original>
             </Key>
         </Container>
         <Container name="Namespace">
@@ -63,12 +76,18 @@
                 <Original>Directory listing of saves stored with the Pythia extension</Original>
             </Key>
         </Container>
-        <Container name="Inidbi2">
-            <Key ID="STR_A3UE_EXTSAVES_GUI_setup_ie_inidbi2_savelist_text">
-                <Original>Inidbi2 Saves</Original>
+        <Container name="hints">
+            <Key ID="STR_A3UE_EXTSAVES_GUI_setup_ie_hints_inidbi2_export_failure">
+                <Original>Failed to export save data with the Inidbi2 extension</Original>
             </Key>
-            <Key ID="STR_A3UE_EXTSAVES_GUI_setup_ie_inidbi2_savelist_tooltip">
-                <Original>List of saves stored with the Inidbi2 extension</Original>
+            <Key ID="STR_A3UE_EXTSAVES_GUI_setup_ie_hints_inidbi2_export_success">
+                <Original>Successfully exported save data with the Inidbi2 extension</Original>
+            </Key>
+            <Key ID="STR_A3UE_EXTSAVES_GUI_setup_ie_hints_pythia_export_failure">
+                <Original>Failed to export save data with the Pythia extension</Original>
+            </Key>
+            <Key ID="STR_A3UE_EXTSAVES_GUI_setup_ie_hints_pythia_export_success">
+                <Original>Successfully exported save data to file: %1.%2 with the Pythia extension</Original>
             </Key>
         </Container>
     </Package>

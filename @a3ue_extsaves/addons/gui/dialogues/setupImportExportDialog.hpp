@@ -92,12 +92,14 @@ class A3A_SetupImportExportDialog
                     idc = A3A_IDC_SETUP_IMPORTEXPORT_PYTHIA_EXPORTBUTTON;
                     text = CSTRING(setup_ie_ext_export_pythia_text);
                     tooltip = CSTRING(setup_ie_ext_export_pythia_tooltip);
+                    onButtonClick = "[""exportPythiaClient"", _this] call a3ue_extsaves_gui_fnc_setupImportExportDialog";
                     y = 7 * GRID_H;
                 };
                 class Inidbi2ExportButton : Inidbi2Button {
                     idc = A3A_IDC_SETUP_IMPORTEXPORT_INIDBI2_EXPORTBUTTON;
                     text = CSTRING(setup_ie_ext_export_inidbi2_text);
                     tooltip = CSTRING(setup_ie_ext_export_inidbi2_tooltip);
+                    onButtonClick = "[""exportInidbi2Client"", _this] call a3ue_extsaves_gui_fnc_setupImportExportDialog";
                     y = 12 * GRID_H;
                 };
             };
