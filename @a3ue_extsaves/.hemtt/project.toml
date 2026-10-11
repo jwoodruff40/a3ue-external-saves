@@ -30,5 +30,8 @@ workshop = [
     "3499977893", # Advanced Developer Tools
 ]
 
+[hemtt.publish]
+description = "README.md"
+
 [version]
 git_hash = 0
