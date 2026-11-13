@@ -1,2 +1,1 @@
 PREP(setupImportExportDialog);
-PREP(setupLoadgameTab);
